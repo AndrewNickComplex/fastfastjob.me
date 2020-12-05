@@ -4,6 +4,7 @@ from django.utils import timezone
 from phonenumber_field.models import PhoneNumberField
 # Create your models here.
 
+#contact methods for User to choose preferred method of contact from
 method = (
     ('whatsapp','whatsapp'),
     ('email','email'),
