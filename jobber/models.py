@@ -36,8 +36,7 @@ def Job(models.Model):
     tag = models.ForeignKey(Tag, null=False, on_delete=models.CASCADE, related_name="jobs")
     created_at = models.DateTimeField(default=timezone.now)
     estimate_pay = models.DecimalField(decimal_places=2, max_digits=4)
-    # should add a tag column
-    # how are we going to check if a 
+
 
     def __str__(self):
         return f"{self.pk}: {self.title} by {self.listed_by}"
