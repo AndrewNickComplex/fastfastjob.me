@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jobber',
-    'phonenumber_field'
+    'phonenumber_field',
+    'django_google_maps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,3 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Extra Modifications based on our project
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyAb_teWfX8BPPiJuhTbSwavxAeufDrU54E'
+
+AUTH_USER_MODEL = 'jobber.User'

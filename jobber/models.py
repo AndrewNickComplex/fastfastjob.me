@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-from phonenumber_field.models import PhoneNumberField
+# from phonenumber_field.modelfields import PhoneNumberField
+from django_google_maps import fields as map_fields
 # Create your models here.
 
 #contact methods for User to choose preferred method of contact from
@@ -12,34 +13,56 @@ method = (
     ('facebook','facebook')
 )
 
-class User(AbstractUser):
-    #Abstract User class inherits username, password, email, etc
-    pk = models.AutoField(primary_key=True)
-    contact_method = models.CharField(choices = method, max_length = 30)
-    # Phone Number Field is from https://github.com/stefanfoulis/django-phonenumber-field
-    contact_number = models.PhoneNumberField()
-    # Watchlist for jobs that a jobber stores in joblist.
-    # we need to make sure that the user cant show interest in the job that they posted
-    jobs_interested = models.ForeignKey(Job, null = True, on_delete=models.CASCADE)
-    #The list of jobs that a boss user posted
-    jobs_posted = models.ForeignKey(Job, null = True, on_delete=models.CASCADE)
-    def __str__(self):
-        return f"{self.id}: {self.username} @ {self.email}"
+gender = (
+    ('male','male'),
+    ('female','female'),
+    ('others','others')
+)
 
-def Job(models.Model):
-    pk = models.AutoField(primary_key=True)
-    listed_by = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+class Tag(models.Model):
+    title = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"{self.title}"
+
+class Job(models.Model):
+    id = models.AutoField(primary_key=True)
+    created_by = models.ForeignKey('User', null=False, on_delete=models.CASCADE, related_name="jobs_created")
     title = models.CharField(max_length=60)
-    description = models.TextField(max_length=2000)
+    #address and geo location both uses the django_google_maps package
+    address = map_fields.AddressField(max_length=200)
+    geolocation = map_fields.GeoLocationField(max_length=100)
+    description = models.TextField(blank=True,max_length=2000)
     # location: How will the GMaps/GeoDjango API access and provide this?
     # just going to be saved as longtitude and latitude
     tag = models.ForeignKey(Tag, null=False, on_delete=models.CASCADE, related_name="jobs")
     created_at = models.DateTimeField(default=timezone.now)
-    estimate_pay = models.DecimalField(decimal_places=2, max_digits=4)
-
+    estimate_pay = models.DecimalField(decimal_places=2, max_digits=7)
+    number_of_positions = models.IntegerField()
 
     def __str__(self):
-        return f"{self.pk}: {self.title} by {self.listed_by}"
+        return f"{self.id}: {self.title} by {self.created_by}"
 
-def Tag(models.Model):
-    title = models.CharField(max_length=30)
+    #for django tests if job is valid
+    def is_valid_job(self):
+        pass
+
+class User(AbstractUser):
+    #Abstract User class inherits username, password, email, etc
+    id = models.AutoField(primary_key=True)
+    #address and geo location both uses the django_google_maps package
+    address = map_fields.AddressField(max_length=200)
+    geolocation = map_fields.GeoLocationField(max_length=100)
+    contact_method = models.CharField(choices = method, max_length = 30)
+    # PhoneNumberField is from https://pypi.org/project/django-phonenumber-field/
+    #Issue #11: contact_number = models.PhoneNumberField()
+    gender = models.CharField(choices=gender, blank=False, max_length = 10)
+    created_at = models.DateTimeField(default=timezone.now)
+    #Watchlist for jobs that a jobber stores in joblist.
+    jobs_interested = models.ForeignKey(Job, null = True, blank=True, on_delete=models.CASCADE, related_name='interested_by')
+    def __str__(self):
+        return f"{self.id}: {self.username} ({self.first_name} {self.last_name} )"
+
+    #for django tests if user is valid
+    def is_valid_user(self):
+        pass
