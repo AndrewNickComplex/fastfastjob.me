@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-# from phonenumber_field.modelfields import PhoneNumberField
 from django_google_maps import fields as map_fields
+from phone_field import PhoneField
+
+
 # Create your models here.
 
 #contact methods for User to choose preferred method of contact from
@@ -33,8 +35,6 @@ class Job(models.Model):
     address = map_fields.AddressField(max_length=200)
     geolocation = map_fields.GeoLocationField(max_length=100)
     description = models.TextField(blank=True,max_length=2000)
-    # location: How will the GMaps/GeoDjango API access and provide this?
-    # just going to be saved as longtitude and latitude
     tag = models.ForeignKey(Tag, null=False, on_delete=models.CASCADE, related_name="jobs")
     created_at = models.DateTimeField(default=timezone.now)
     estimate_pay = models.DecimalField(decimal_places=2, max_digits=7)
@@ -54,8 +54,8 @@ class User(AbstractUser):
     address = map_fields.AddressField(max_length=200)
     geolocation = map_fields.GeoLocationField(max_length=100)
     contact_method = models.CharField(choices = method, max_length = 30)
-    # PhoneNumberField is from https://pypi.org/project/django-phonenumber-field/
-    #Issue #11: contact_number = models.PhoneNumberField()
+    # PhoneNumberField is from https://pypi.org/project/django-phone-field/
+    phone = PhoneField(blank=True, help_text='Contact phone number')
     gender = models.CharField(choices=gender, blank=False, max_length = 10)
     created_at = models.DateTimeField(default=timezone.now)
     #Watchlist for jobs that a jobber stores in joblist.

@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jobber',
-    'phonenumber_field',
+    'phone_field',
     'django_google_maps',
     'django.contrib.admin',
     'django.contrib.auth',
