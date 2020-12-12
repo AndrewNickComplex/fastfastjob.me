@@ -133,6 +133,7 @@ Maps
 GOOGLE_MAPS_API_KEY = 'AIzaSyAb_teWfX8BPPiJuhTbSwavxAeufDrU54E'
 
 #Map widget for django-map-widgets
+
 MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 15),
@@ -143,13 +144,7 @@ MAP_WIDGETS = {
     "GOOGLE_MAP_API_KEY": "<google-api-key>"
 }
 
-
-<<<<<<< Updated upstream
-AUTH_USER_MODEL = 'jobber.User'
-
-=======
 '''
 Authenticator
 '''
 AUTH_USER_MODEL = 'jobber.User'
->>>>>>> Stashed changes
