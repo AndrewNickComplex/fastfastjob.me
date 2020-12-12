@@ -127,3 +127,4 @@ STATIC_URL = '/static/'
 GOOGLE_MAPS_API_KEY = 'AIzaSyAb_teWfX8BPPiJuhTbSwavxAeufDrU54E'
 
 AUTH_USER_MODEL = 'jobber.User'
+

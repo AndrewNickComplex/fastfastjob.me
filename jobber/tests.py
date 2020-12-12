@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import User, Job, Tag
+from .models import Job, User, Category, Application, Jobber
 # Create your tests here.
 
 class UserTestCase(TestCase):

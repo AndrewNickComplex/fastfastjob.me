@@ -4,7 +4,14 @@
     <ol>
     {%for job in jobs%}
     
-    <li>Job {{job.id}}: {{job.title}} by {{job.created_by}}</li>
+    
+    <a href="{% url 'job' job_id=job.pk %}">{{job.id}}: {{job.title}} by {{job.created_by}}</a>
+    <br>
     {% endfor %}
     </ol>
+
+
+
 {% endblock %}
+
+

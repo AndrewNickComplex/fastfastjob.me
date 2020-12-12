@@ -1,0 +1,20 @@
+
+<!-- Page for extra details on individual job -->
+{% extends 'jobber/layout.html' %}
+
+{% if messages %}
+    {% for message in messages%}
+    <div>{{message}}</div>
+    {% endfor %}
+{% endif %}
+
+{% block body %}
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <h2>{{user.email}}</h2>
+
+    <ul>
+        {% for job in jobs_posted %}
+        <a href='{% url "job" job_id=job.pk %}'>{{job.title}}</a>
+        {% endfor %}
+    </ul>
+{% endblock %}
