@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django-map-widgets.apps import *
+import django-google-maps
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +35,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jobber',
     'phone_field',
-    'django_google_maps',
+    'django-google-maps',
+    'django-map-widgets',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,10 +124,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-#Extra Modifications based on our project
-
+##########################################
+#Extra Modifications based on our project#
+##########################################
+'''
+Maps
+'''
 GOOGLE_MAPS_API_KEY = 'AIzaSyAb_teWfX8BPPiJuhTbSwavxAeufDrU54E'
 
+#Map widget for django-map-widgets
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 15),
+        ("mapCenterLocationName", "london"),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'uk'}}),
+        ("markerFitZoom", 12),
+    ),
+    "GOOGLE_MAP_API_KEY": "<google-api-key>"
+}
+
+
+<<<<<<< Updated upstream
 AUTH_USER_MODEL = 'jobber.User'
 
+=======
+'''
+Authenticator
+'''
+AUTH_USER_MODEL = 'jobber.User'
+>>>>>>> Stashed changes

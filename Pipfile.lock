@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "805b3e20313d1cc2cdbbba2f7f2b92965ec10741fd1df372b4df0f94cebc0d39"
+            "sha256": "60adf3cb5dd67198a84a3cfbb6ddd1ab84f87f8ce974939115a13a21cd3e3737"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -46,6 +46,14 @@
             ],
             "index": "pypi",
             "version": "==0.12.2"
+        },
+        "django-map-widgets": {
+            "hashes": [
+                "sha256:7ad4047377614af7664792b0366c7be394b675d2f6106b3560d69c11e2811eb4",
+                "sha256:9547a14aa3d4dd1ec66270b24f570c83bc52f7c7e41afc410c9c09dee5c3aa64"
+            ],
+            "index": "pypi",
+            "version": "==0.3.0"
         },
         "django-phone-field": {
             "hashes": [
