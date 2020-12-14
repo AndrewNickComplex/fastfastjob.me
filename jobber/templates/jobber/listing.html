@@ -1,17 +1,23 @@
 {% extends 'jobber/layout.html' %}
 
 {% block body %}
-    <ol>
+<br>
+<div class="card-deck" style="width: 12rem;"></div>
     {%for job in jobs%}
-    
-    
-    <a href="{% url 'job' job_id=job.pk %}">{{job.id}}: {{job.title}} by {{job.created_by}}</a>
+    <div class="card w-75">    
+        <div class="card">
+            <div class="card-body">
+                <a class="card-title" href="{% url 'job' job_id=job.pk %}">{{job.title}} for RM{{job.pay}}</a>
+                <p class="card-text">{{job.description}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Address: {{job.address}}</small>
+            </div>
+        </div>
+    </div>
     <br>
     {% endfor %}
-    </ol>
-
-
-
+</div>
 {% endblock %}
 
 

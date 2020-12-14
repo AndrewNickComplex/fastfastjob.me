@@ -18,6 +18,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
         <!-- Link to static files  -->
         <link href="{% static 'jobber/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'jobber/output.css' %}" rel="stylesheet">
         <title>{% block title %}okJobber{% endblock %}</title>
         </head>
 
@@ -38,7 +39,7 @@
             {% endif %}
         </div>
         
-        <nav class="navbar navbar-light" style="background-color: #fac248;">
+        <nav class="navbar navbar-light" style="background-color: #fccf6e;">
             <a class="navbar-brand" href="{% url 'listing' %}">okJobber</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,15 +51,15 @@
                         <a class="nav-link" href="{% url 'listing' %}">Jobs</a>
                     </li>
 
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user' user_id=user.pk %}">{{user.username}}</a>
-                    </li>    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                    </li>
+                {% if user.is_authenticated %}    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'createjob' %}">Post a Job</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user' user_id=user.pk %}">{{user.username}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                     </li>
 
                 {% else %}
