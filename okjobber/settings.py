@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jobber',
     'phone_field',
-    # 'django-google-maps',
+    'django_google_maps',
     # 'django-map-widgets',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,17 +131,17 @@ Maps
 '''
 GOOGLE_MAPS_API_KEY = 'AIzaSyAb_teWfX8BPPiJuhTbSwavxAeufDrU54E'
 
-#Map widget for django-map-widgets
+# #Map widget for django-map-widgets
 
-MAP_WIDGETS = {
-    "GooglePointFieldWidget": (
-        ("zoom", 15),
-        ("mapCenterLocationName", "london"),
-        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'uk'}}),
-        ("markerFitZoom", 12),
-    ),
-    "GOOGLE_MAP_API_KEY": "<google-api-key>"
-}
+# MAP_WIDGETS = {
+#     "GooglePointFieldWidget": (
+#         ("zoom", 15),
+#         ("mapCenterLocationName", "london"),
+#         ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'uk'}}),
+#         ("markerFitZoom", 12),
+#     ),
+#     "GOOGLE_MAP_API_KEY": "<google-api-key>"
+# }
 
 '''
 Authenticator
