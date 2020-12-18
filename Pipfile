@@ -10,6 +10,7 @@ babel = "*"
 phonenumbers = "*"
 django-phone-field = "*"
 django-map-widgets = "*"
+gunicorn = "*"
 
 [dev-packages]
 
