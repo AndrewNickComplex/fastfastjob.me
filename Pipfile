@@ -11,6 +11,9 @@ phonenumbers = "*"
 django-phone-field = "*"
 django-map-widgets = "*"
 gunicorn = "*"
+dj-database-url = "*"
+psycopg2 = "*"
+whitenoise = "*"
 
 [dev-packages]
 
