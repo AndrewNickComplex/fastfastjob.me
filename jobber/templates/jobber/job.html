@@ -1,0 +1,27 @@
+<!-- Page for extra details on individual job -->
+{% extends 'jobber/layout.html' %}
+
+{% block message %}
+    {{message}}
+{% endblock %}
+
+
+{% block body %}
+    <h1>{{job.title}}</h1>
+    <h2>{{job.created_by}}</h2>
+
+    <ul>
+        <li>{{job.category}}</li>
+        <li>{{job.pay}}</li>
+    </ul>
+
+    <div>{{job.description}}</div>
+
+    <!-- if is_user, show apply button. Else, show login button -->
+    {% if is_user %}
+    <a href="{% url 'application' %}">Apply</a>
+    {% else %}
+    <a href="{% url 'login'%}">Please login to apply</a>
+    {% endif %}
+    
+{% endblock %}
