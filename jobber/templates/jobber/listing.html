@@ -2,11 +2,12 @@
 
 {% block body %}
 <br>
-<div class="card-deck">
+<div class="card-columns">
+ 
     {%for job in jobs%}
-    <div class="card w-75">
-        <div class="card">
-            <div class="card-body">
+    
+<div class="card">
+            <div>
                 <a style="hover:black" class="card-title" href="{% url 'job' job_id=job.pk %}">{{job.title}} for RM{{job.pay}}</a>
                 <p class="card-text">{{job.description}}</p>
             </div>
@@ -14,10 +15,11 @@
                 <small class="text-muted">Address: {{job.address}}</small>
             </div>
         </div>
-    </div>
+    
     <br>
     {% endfor %}
 </div>
+
 {% endblock %}
 
 

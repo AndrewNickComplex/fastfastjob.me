@@ -25,11 +25,12 @@ def create_job(request):
         category = Category.objects.get(pk=request.POST["category"])
         pay = request.POST["pay"]
         number_of_positions = request.POST["number_of_positions"]
-        geolocation = request.POST["geolocation"]
+        #To include geolocation for google maps api binding
+        #geolocation = request.POST["geolocation"]
         address = request.POST["address"]
 
         job = Job(created_by=by,title=title,description=description,category=category,pay=pay,
-        number_of_positions=number_of_positions,geolocation=geolocation,address=address)
+        number_of_positions=number_of_positions,address=address)
         job.save()
         #return to the page of the job that was created
         url = reverse('job', kwargs={'job_id': job.pk})

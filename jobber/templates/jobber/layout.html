@@ -22,7 +22,7 @@
         <title>{% block title %}okJobber{% endblock %}</title>
         </head>
 
-    <body>
+    <body style="max-width:1000px; margin-right: auto; margin-left: auto; ">
         {% if messages %}
         <div class="alert alert-{{ msg_type }}">
             {% for message in messages %}
@@ -39,7 +39,7 @@
             {% endif %}
         </div>
         
-        <nav class="navbar navbar-light" style="background-color: #fccf6e;">
+        <nav class="navbar navbar-light" style="background: linear-gradient(35deg, #CCFFFF, #FFCCCC)">
             <a class="navbar-brand" href="{% url 'listing' %}">okJobber</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -73,10 +73,10 @@
                 </ul>
             </div>
         </nav>
-        <div class="d-flex justify-content-around">
+        
         {% block body %}
         {% endblock %}
-        </div>
+        
         <!-- Bootstrap Javascript, to be placed at the end before </body> -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
