@@ -2,21 +2,24 @@
 
 {% block body %}
 <br>
-<div class="card-columns">
+
+<div class="d-flex flex-column justify-content-around align-items-center" style="max-width:1000px; margin-right: auto; margin-left: auto; ">
  
     {%for job in jobs%}
     
-<div class="card">
+<a href="{% url 'job' job_id=job.pk %}">
+<div class="card" style="width: 30rem; height: 10rem;">
             <div>
-                <a style="hover:black" class="card-title" href="{% url 'job' job_id=job.pk %}">{{job.title}} for RM{{job.pay}}</a>
+                <p class="card-header">{{job.title}} for RM{{job.pay}}</p>
                 <p class="card-text">{{job.description}}</p>
             </div>
             <div class="card-footer">
                 <small class="text-muted">Address: {{job.address}}</small>
             </div>
         </div>
-    
-    <br>
+      </a>
+    </br>
+  </br>
     {% endfor %}
 </div>
 
