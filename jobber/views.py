@@ -10,7 +10,7 @@ from django.contrib import messages
 # Create your views here.
 def listing(request):
     return render(request, "jobber/listing.html",{
-        'jobs': Job.objects.all()
+        'jobs': Job.objects.all(), 'categories': Category.objects.all()
     })
     
 def create_job(request):
@@ -38,7 +38,8 @@ def create_job(request):
 
     else:
         return render(request, "jobber/createjob.html",{
-            "form": CreateJobForm
+            "form": CreateJobForm,
+            'categories': Category.objects.all()
         })
 
 
@@ -61,7 +62,7 @@ def login_view(request):
                 "message": "Invalid username and/or password."
             })
     else:
-        return render(request, "jobber/login.html")
+        return render(request, "jobber/login.html",{'categories': Category.objects.all()})
 
 def logout_view(request):
     logout(request)
@@ -92,7 +93,7 @@ def register(request):
         login(request, user)
         return HttpResponseRedirect(reverse("listing"))
     else:
-        return render(request, "jobber/register.html")
+        return render(request, "jobber/register.html",{'categories': Category.objects.all()})
 
 
 def job(request, job_id):
@@ -104,7 +105,7 @@ def job(request, job_id):
         return HttpResponseRedirect(reverse('listing'))
 
     return render(request, "jobber/job.html",{
-        "job":job, "is_user": is_user
+        "job":job, "is_user": is_user, 'categories': Category.objects.all()
     })
 
 # What to do if someone applies for job? 
@@ -122,7 +123,8 @@ def user(request, user_id):
     
     return render(request, "jobber/user.html", {
         "user": user,
-        "jobs_posted": jobs_posted
+        "jobs_posted": jobs_posted,
+        'categories': Category.objects.all()
     })
 
 def category(request, category_name):
@@ -140,6 +142,8 @@ def category(request, category_name):
         return HttpResponseRedirect(reverse('listing'))
 
     return render(request, "jobber/categorylisting.html", {
-        "jobs": jobs
+        "jobs": jobs, 
+        "category_name": category_name,
+        'categories': Category.objects.all()
     })
     

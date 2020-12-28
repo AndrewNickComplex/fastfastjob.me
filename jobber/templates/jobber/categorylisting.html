@@ -1,17 +1,29 @@
 {% extends 'jobber/layout.html' %}
 
+
 {% block body %}
-    <ol>
-    {%for job in jobs%}
-    
-    <li>Job {{job.id}}: {{job.title}} by {{job.created_by}}</li>
-    {% endfor %}
-    </ol>
+
+<div style="text-transform:capitalize; text-align: center" class="display-4">{{category_name}}</div>
+
+<!-- <div class="d-flex flex-column justify-content-around align-items-center"> -->
+  <div class="card-deck">
+    <div class="row">
+    {% for job in jobs %}
+      <div class="col-sm-12 col-md-6">
+        <a href="{% url 'job' job_id=job.pk %}">
+          <div class="card my-2 mx-0">
+            <div class="card-body">
+              <div class="row">
+                <h5 class="card-title col-9" style="text-transform:capitalize">{{job.title}}</h5>
+                <p class="card-text col-3"> RM {{job.pay}}</p>
+              </div>  
+              <p class="card-text">{{job.description}}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
 
-
-{% if messages %}
-    {% for message in messages%}
-    <div>{{message}}</div>
-    {% endfor %}
-{% endif %}
