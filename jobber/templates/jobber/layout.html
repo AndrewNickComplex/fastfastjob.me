@@ -23,23 +23,21 @@
         </head>
 
     <body>
-        {% if messages %}
-        <div class="alert alert-{{ msg_type }}">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </div>
-        {% endif %}
+        <div class="container pt-2">
 
-        <div>
-            {% if user.is_authenticated %}
-                Signed in as <strong>{{ user.username }}</strong>.
-            {% else %}
-                Not signed in.
+
+            <!-- For Alert Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ msg_type }} alert-dismissible"></div>
+                <button type="button" class="close" data-dismiss="alert">$times;</button>
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                </div>
+                {% endfor %}
             {% endif %}
-        </div>
         
-        <nav class="navbar navbar-light" style="background: linear-gradient(35deg, #CCFFFF, #FFCCCC)">
+            <!-- Navbar -->
+        <nav class="navbar navbar-expand-md sticky-top navbar-light" style="background: linear-gradient(35deg, #CCFFFF, #FFCCCC)">
             <a class="navbar-brand" href="{% url 'listing' %}">okJobber</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,6 +48,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'listing' %}">Jobs</a>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
 
                 {% if user.is_authenticated %}    
                     <li class="nav-item">
@@ -73,10 +73,11 @@
                 </ul>
             </div>
         </nav>
-        
+        <br>
+        <!-- Block Body content -->
         {% block body %}
         {% endblock %}
-        
+    </div>
         <!-- Bootstrap Javascript, to be placed at the end before </body> -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
